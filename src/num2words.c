@@ -41,7 +41,7 @@ static const char* const TENS[] = {
 };
 
 static const char* STR_OH_CLOCK = "";
-static const char* STR_NOON = "puolpäivä";
+static const char* STR_NOON = "kakstoist";
 static const char* STR_MIDNIGHT = "keskiyö";
 static const char* STR_QUARTER = "varttia";
 static const char* STR_TO = "vaille";
