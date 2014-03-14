@@ -40,6 +40,16 @@ static const char* const TENS[] = {
   "ysikyt"
 };
 
+static const char* const LITTLE[] = {
+  "vähän",
+  "pikkusen"
+};
+
+static const char* const ALMOST[] = {
+  "melkeen",
+  "kohta"
+};
+
 static const char* STR_OH_CLOCK = "";
 static const char* STR_NOON = "kakstoist";
 static const char* STR_MIDNIGHT = "keskiyö";
@@ -48,7 +58,6 @@ static const char* STR_TEN = "kymment";
 static const char* STR_TO = "vaille";
 static const char* STR_PAST = "yli";
 static const char* STR_HALF = "puol";
-static const char* STR_AFTER = "yli";
 
 static size_t append_number(char* words, int num) {
   int tens_val = num / 10 % 10;
@@ -99,8 +108,17 @@ void fuzzy_time_to_words(int hours, int minutes, char* words, size_t length) {
   size_t remaining = length;
   memset(words, 0, length);
 
+  int fuzzy_index = 0;
+  if (fuzzy_hours % 2) {
+    fuzzy_index = 1;
+  }
+
   if (fuzzy_minutes != 0 && (fuzzy_minutes >= 10 || fuzzy_minutes == 5 || fuzzy_hours == 0 || fuzzy_hours == 12)) {
-    if (fuzzy_minutes == 50) {
+    if (fuzzy_minutes == 55) {
+      remaining -= append_string(words, remaining, ALMOST[fuzzy_index]);
+      remaining -= append_string(words, remaining, " ");
+      fuzzy_hours = (fuzzy_hours + 1) % 24;
+    } else if (fuzzy_minutes == 50) {
       remaining -= append_string(words, remaining, STR_TEN);
       remaining -= append_string(words, remaining, " ");
       remaining -= append_string(words, remaining, STR_TO);
@@ -112,24 +130,43 @@ void fuzzy_time_to_words(int hours, int minutes, char* words, size_t length) {
       remaining -= append_string(words, remaining, STR_TO);
       remaining -= append_string(words, remaining, " ");
       fuzzy_hours = (fuzzy_hours + 1) % 24;
+    } else if (fuzzy_minutes == 35) {
+      remaining -= append_string(words, remaining, LITTLE[fuzzy_index]);
+      remaining -= append_string(words, remaining, " ");
+      remaining -= append_string(words, remaining, STR_PAST);
+      remaining -= append_string(words, remaining, " ");
+      remaining -= append_string(words, remaining, STR_HALF);
+      remaining -= append_string(words, remaining, " ");
+      fuzzy_hours = (fuzzy_hours + 1) % 24;
     } else if (fuzzy_minutes == 30) {
+      remaining -= append_string(words, remaining, STR_HALF);
+      remaining -= append_string(words, remaining, " ");
+      fuzzy_hours = (fuzzy_hours + 1) % 24;
+    } else if (fuzzy_minutes == 25) {
+      remaining -= append_string(words, remaining, ALMOST[fuzzy_index]);
+      remaining -= append_string(words, remaining, " ");
       remaining -= append_string(words, remaining, STR_HALF);
       remaining -= append_string(words, remaining, " ");
       fuzzy_hours = (fuzzy_hours + 1) % 24;
     } else if (fuzzy_minutes == 15) {
       remaining -= append_string(words, remaining, STR_QUARTER);
       remaining -= append_string(words, remaining, " ");
-      remaining -= append_string(words, remaining, STR_AFTER);
+      remaining -= append_string(words, remaining, STR_PAST);
       remaining -= append_string(words, remaining, " ");
     } else if (fuzzy_minutes == 10) {
       remaining -= append_string(words, remaining, STR_TEN);
       remaining -= append_string(words, remaining, " ");
-      remaining -= append_string(words, remaining, STR_AFTER);
+      remaining -= append_string(words, remaining, STR_PAST);
+      remaining -= append_string(words, remaining, " ");
+    } else if (fuzzy_minutes == 5) {
+      remaining -= append_string(words, remaining, LITTLE[fuzzy_index]);
+      remaining -= append_string(words, remaining, " ");
+      remaining -= append_string(words, remaining, STR_PAST);
       remaining -= append_string(words, remaining, " ");
     } else if (fuzzy_minutes < 30) {
       remaining -= append_number(words, fuzzy_minutes);
       remaining -= append_string(words, remaining, " ");
-      remaining -= append_string(words, remaining, STR_AFTER);
+      remaining -= append_string(words, remaining, STR_PAST);
       remaining -= append_string(words, remaining, " ");
     } else {
       remaining -= append_number(words, 60 - fuzzy_minutes);
@@ -147,7 +184,7 @@ void fuzzy_time_to_words(int hours, int minutes, char* words, size_t length) {
   } else {
     remaining -= append_number(words, fuzzy_hours % 12);
   }
-
+  
   if (fuzzy_minutes == 0 && !(fuzzy_hours == 0 || fuzzy_hours == 12)) {
     remaining -= append_string(words, remaining, " ");
     remaining -= append_string(words, remaining, STR_OH_CLOCK);
