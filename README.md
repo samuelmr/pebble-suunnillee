@@ -1,4 +1,4 @@
-pebble-suunnillee
+Suunnillee
 =================
 
 Laita Pebble-älykello ilmoittamaan kellonaika suomeksi, puhekielellä.

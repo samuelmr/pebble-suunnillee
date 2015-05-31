@@ -1,18 +1,42 @@
 {
-  "uuid": "71c2e339-ce4d-4e00-b9a9-87682988a1df",
-  "shortName": "suunnillee",
+  "appKeys": {},
+  "capabilities": [
+    ""
+  ],
+  "companyName": "Samuel Rinnetmäki",
   "longName": "Suunnillee",
-  "companyName": "Samuel Rinnetmaki",
-  "versionCode": 1,
-  "versionLabel": "1.2",
+  "projectType": "native",
+  "resources": {
+    "media": [
+      {
+        "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
+        "compatibility": "2.7",
+        "file": "fonts/Beatles.ttf",
+        "name": "BEATLES_REGULAR_36",
+        "type": "font"
+      },
+      {
+        "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
+        "compatibility": "2.7",
+        "file": "fonts/BeatlesLight.ttf",
+        "name": "BEATLES_LIGHT_36",
+        "type": "font"
+      },
+      {
+        "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
+        "compatibility": "2.7",
+        "file": "fonts/BeatlesBold.ttf",
+        "name": "BEATLES_BOLD_36",
+        "type": "font"
+      }
+    ]
+  },
+  "shortName": "suunnillee",
+  "uuid": "71c2e339-ce4d-4e00-b9a9-87682988a1df",
+  "versionCode": 2,
+  "versionLabel": "2.2",
   "watchapp": {
     "watchface": true
-  },
-  "appKeys": {
-    "dummy": 0
-  },
-  "resources": {
-    "media": []
   },
   "targetPlatforms": [
     "aplite",
