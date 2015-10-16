@@ -7,7 +7,7 @@
 Window *window;
 char top_string[BUFFER_SIZE];
 char middle_string[BUFFER_SIZE];
-char bottom_string[BUFFER_SIZE];  
+char bottom_string[BUFFER_SIZE];
 
 GFont regular36;
 GFont light36;
@@ -99,7 +99,7 @@ static void update_time(struct tm* t) {
   memset(top, 0, BUFFER_SIZE);
   memset(middle, 0, BUFFER_SIZE);
   memset(bottom, 0, BUFFER_SIZE);
-  
+
   GFont top_font = regular36;
   GFont middle_font = light36;
   GFont bottom_font = bold36;
@@ -164,12 +164,12 @@ static void update_time(struct tm* t) {
     bottom_font = regular36;
   } else {
     if ((fuzzy_hours % 12 == 7) || (fuzzy_hours % 12 == 8)) {
-      // APP_LOG(APP_LOG_LEVEL_DEBUG, "%d, %d", fuzzy_hours, fuzzy_hours % 12);  
+      // APP_LOG(APP_LOG_LEVEL_DEBUG, "%d, %d", fuzzy_hours, fuzzy_hours % 12);
       bottom_font = regular36;
     }
     bottom_remaining -= append_number(bottom, fuzzy_hours % 12);
   }
-  // APP_LOG(APP_LOG_LEVEL_DEBUG, "%s, %s, %s", top, middle, bottom);  
+  // APP_LOG(APP_LOG_LEVEL_DEBUG, "%s, %s, %s", top, middle, bottom);
   text_layer_set_font(top_line.label, top_font);
   text_layer_set_text(top_line.label, top);
   text_layer_set_font(middle_line.label, middle_font);
@@ -192,23 +192,27 @@ static void do_init(void) {
   regular36 = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_BEATLES_REGULAR_36));
   light36 = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_BEATLES_LIGHT_36));
   bold36 = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_BEATLES_BOLD_36));
-  
+
   Layer *root_layer = window_get_root_layer(window);
   GRect frame = layer_get_frame(root_layer);
+  GTextAlignment align = PBL_IF_ROUND_ELSE(GTextAlignmentCenter, GTextAlignmentLeft);
 
-  top_line.label = text_layer_create(GRect(0, 20, frame.size.w, 40));
+  top_line.label = text_layer_create(GRect(0, frame.size.h/2-62, frame.size.w, 40));
   text_layer_set_background_color(top_line.label, GColorBlack);
   text_layer_set_text_color(top_line.label, GColorWhite);
+  text_layer_set_text_alignment(top_line.label, align);
   layer_add_child(root_layer, text_layer_get_layer(top_line.label));
 
-  middle_line.label = text_layer_create(GRect(0, 60, frame.size.w, 40));
+  middle_line.label = text_layer_create(GRect(0, frame.size.h/2-22, frame.size.w, 40));
   text_layer_set_background_color(middle_line.label, GColorBlack);
   text_layer_set_text_color(middle_line.label, GColorWhite);
+  text_layer_set_text_alignment(middle_line.label, align);
   layer_add_child(root_layer, text_layer_get_layer(middle_line.label));
 
-  bottom_line.label = text_layer_create(GRect(0, 100, frame.size.w, 44));
+  bottom_line.label = text_layer_create(GRect(0, frame.size.h/2+18, frame.size.w, 44));
   text_layer_set_background_color(bottom_line.label, GColorBlack);
   text_layer_set_text_color(bottom_line.label, GColorWhite);
+  text_layer_set_text_alignment(bottom_line.label, align);
   layer_add_child(root_layer, text_layer_get_layer(bottom_line.label));
 
   time_t now = time(NULL);
