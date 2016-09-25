@@ -1,6 +1,6 @@
 {
-  "version": "2.3.0",
-  "author": "Samuel Rinnetm\u00e4ki",
+  "version": "2.4.0",
+  "author": "Samuel Rinnetmäki",
   "private": true,
   "dependencies": {},
   "keywords": [
@@ -46,7 +46,8 @@
     "targetPlatforms": [
       "aplite",
       "basalt",
-      "chalk"
+      "chalk",
+      "diorite"
     ],
     "capabilities": [
       ""
