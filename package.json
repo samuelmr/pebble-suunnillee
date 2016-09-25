@@ -1,0 +1,56 @@
+{
+  "version": "2.3.0",
+  "author": "Samuel Rinnetm\u00e4ki",
+  "private": true,
+  "dependencies": {},
+  "keywords": [
+    "pebble-app"
+  ],
+  "pebble": {
+    "sdkVersion": "3",
+    "resources": {
+      "media": [
+        {
+          "type": "font",
+          "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
+          "compatibility": "2.7",
+          "file": "fonts/Beatles.ttf",
+          "name": "BEATLES_REGULAR_36"
+        },
+        {
+          "type": "font",
+          "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
+          "compatibility": "2.7",
+          "file": "fonts/BeatlesLight.ttf",
+          "name": "BEATLES_LIGHT_36"
+        },
+        {
+          "type": "font",
+          "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
+          "compatibility": "2.7",
+          "file": "fonts/BeatlesBold.ttf",
+          "name": "BEATLES_BOLD_36"
+        }
+      ]
+    },
+    "projectType": "native",
+    "uuid": "71c2e339-ce4d-4e00-b9a9-87682988a1df",
+    "messageKeys": {},
+    "enableMultiJS": false,
+    "displayName": "Suunnillee",
+    "watchapp": {
+      "onlyShownOnCommunication": false,
+      "hiddenApp": false,
+      "watchface": true
+    },
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk"
+    ],
+    "capabilities": [
+      ""
+    ]
+  },
+  "name": "suunnillee"
+}
