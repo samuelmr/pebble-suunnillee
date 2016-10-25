@@ -18,7 +18,7 @@ static struct TopStruct {
   char buffer[BUFFER_SIZE];
 } top_line;
 
-static struct MiddleStuct {
+static struct MiddleStruct {
   TextLayer *label;
   char buffer[BUFFER_SIZE];
 } middle_line;
