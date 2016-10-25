@@ -1,57 +1,59 @@
 {
-  "version": "2.4.0",
-  "author": "Samuel Rinnetmäki",
-  "private": true,
-  "dependencies": {},
-  "keywords": [
-    "pebble-app"
-  ],
-  "pebble": {
-    "sdkVersion": "3",
-    "resources": {
-      "media": [
-        {
-          "type": "font",
-          "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
-          "compatibility": "2.7",
-          "file": "fonts/Beatles.ttf",
-          "name": "BEATLES_REGULAR_36"
-        },
-        {
-          "type": "font",
-          "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
-          "compatibility": "2.7",
-          "file": "fonts/BeatlesLight.ttf",
-          "name": "BEATLES_LIGHT_36"
-        },
-        {
-          "type": "font",
-          "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
-          "compatibility": "2.7",
-          "file": "fonts/BeatlesBold.ttf",
-          "name": "BEATLES_BOLD_36"
-        }
-      ]
-    },
-    "projectType": "native",
-    "uuid": "71c2e339-ce4d-4e00-b9a9-87682988a1df",
-    "messageKeys": {},
-    "enableMultiJS": false,
-    "displayName": "Suunnillee",
-    "watchapp": {
-      "onlyShownOnCommunication": false,
-      "hiddenApp": false,
-      "watchface": true
-    },
-    "targetPlatforms": [
-      "aplite",
-      "basalt",
-      "chalk",
-      "diorite"
+    "author": "Samuel Rinnetm\u00e4ki",
+    "dependencies": {},
+    "keywords": [
+        "pebble-app"
     ],
-    "capabilities": [
-      ""
-    ]
-  },
-  "name": "suunnillee"
+    "name": "suunnillee",
+    "pebble": {
+        "displayName": "Suunnillee",
+        "enableMultiJS": true,
+        "messageKeys": [],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "images/ny.png",
+                    "menuIcon": true,
+                    "name": "NY",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
+                    "compatibility": "2.7",
+                    "file": "fonts/BeatlesLight.ttf",
+                    "name": "BEATLES_LIGHT_36",
+                    "type": "font"
+                },
+                {
+                    "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
+                    "compatibility": "2.7",
+                    "file": "fonts/BeatlesBold.ttf",
+                    "name": "BEATLES_BOLD_36",
+                    "type": "font"
+                },
+                {
+                    "characterRegex": "[aehijklmnoprstuvy\u00e4\u00f6 ]",
+                    "compatibility": "2.7",
+                    "file": "fonts/Beatles.ttf",
+                    "name": "BEATLES_REGULAR_36",
+                    "type": "font"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk",
+            "diorite",
+            "emery"
+        ],
+        "uuid": "71c2e339-ce4d-4e00-b9a9-87682988a1df",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "2.4.0"
 }

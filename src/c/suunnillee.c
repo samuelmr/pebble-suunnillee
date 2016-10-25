@@ -182,6 +182,12 @@ static void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
   update_time(tick_time);
 }
 
+static void prv_unobstructed_did_change(GRect frame, void *context) {
+  layer_set_frame(text_layer_get_layer(top_line.label), GRect(0, frame.size.h/2-62, frame.size.w, 40));
+  layer_set_frame(text_layer_get_layer(middle_line.label), GRect(0, frame.size.h/2-22, frame.size.w, 40));
+  layer_set_frame(text_layer_get_layer(bottom_line.label), GRect(0, frame.size.h/2+18, frame.size.w, 44));
+}
+
 static void do_init(void) {
   window = window_create();
   const bool animated = true;
@@ -194,8 +200,17 @@ static void do_init(void) {
   bold36 = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_BEATLES_BOLD_36));
 
   Layer *root_layer = window_get_root_layer(window);
-  GRect frame = layer_get_frame(root_layer);
-  GTextAlignment align = PBL_IF_ROUND_ELSE(GTextAlignmentCenter, GTextAlignmentLeft);
+  // GRect frame = layer_get_frame(root_layer);
+  GRect frame = layer_get_unobstructed_bounds(root_layer);
+ 
+  //  GTextAlignment align = PBL_IF_ROUND_ELSE(GTextAlignmentCenter, GTextAlignmentLeft);
+/*
+  GTextAlignment align = GTextAlignmentLeft;
+  if (frame.size.w > 144) {
+    align = GTextAlignmentCenter;
+  }
+*/
+  GTextAlignment align = GTextAlignmentCenter;
 
   top_line.label = text_layer_create(GRect(0, frame.size.h/2-62, frame.size.w, 40));
   text_layer_set_background_color(top_line.label, GColorBlack);
@@ -214,6 +229,11 @@ static void do_init(void) {
   text_layer_set_text_color(bottom_line.label, GColorWhite);
   text_layer_set_text_alignment(bottom_line.label, align);
   layer_add_child(root_layer, text_layer_get_layer(bottom_line.label));
+
+  UnobstructedAreaHandlers handlers = {
+    .will_change = prv_unobstructed_did_change,
+  };
+  unobstructed_area_service_subscribe(handlers, NULL);
 
   time_t now = time(NULL);
   struct tm *t = localtime(&now);
